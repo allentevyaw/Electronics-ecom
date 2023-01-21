@@ -23,6 +23,7 @@ const [index, setIndex] = useState(0)
                 <div className='small-images-container'>
                     {image?.map((item, i) => (
                         <img
+                            key={i}
                             src={urlFor(item)}
                             className={i === index ?
                                  'small-image selected-image' :

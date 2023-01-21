@@ -23,8 +23,16 @@ const {totalPrice, totalQuantities,
       header: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(cartItems)
+      body: JSON.stringify(cartItems),
     })
+
+    if(response.statusCode === 500) return
+
+    const data = await response.json()
+
+    toast.loading('Redirecting...')
+
+    stripe.redirectToCheckout({sessionId: data.id})
   }
 
   return (
