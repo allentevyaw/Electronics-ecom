@@ -4,7 +4,14 @@ import {BsBagCheckFill} from 'react-icons/bs'
 import { useStateContext } from '@/context/StateContext'
 
 const Success = () => {
-    const {setCartItems, setTotalPrice, setTotalQuantities} = useStateContext()
+    const {setCartItems, setTotalPrice, settotalQuantities} = useStateContext()
+
+    useEffect(() => {
+        localStorage.clear()
+        setCartItems([])
+        setTotalPrice(0)
+        settotalQuantities(0)
+    }, [])
 
   return (
     <div className='success-wrapper'>
@@ -15,10 +22,15 @@ const Success = () => {
             <h2>Thank you for your order!</h2>
             <p className='email-msg'>Check your email inbox for the recepit</p>
             <p className='description'>If you have any questions
-                <a className='email' href=''>
-
+                <a className='email' href='mailto:order@example.com'>
+                    order@example.com
                 </a>
             </p>
+            <Link href={'/'}>
+                <button type='button' width='300px' className='btn'>
+                    Continue Shopping
+                </button>
+            </Link>
         </div>
     </div>
   )
